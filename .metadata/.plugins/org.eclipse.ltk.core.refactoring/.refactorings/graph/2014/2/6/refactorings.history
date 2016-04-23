@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;DiGraph.java&apos; to &apos;digraphwithclone/src/clonablegraph&apos;&#x0A;- Original project: &apos;graph&apos;&#x0A;- Destination element: &apos;digraphwithclone/src/clonablegraph&apos;&#x0A;- Original element: &apos;digraph.DiGraph.java&apos;" description="Copy compilation unit" destination="=digraphwithclone/src&lt;clonablegraph" element1="/src&lt;digraph{DiGraph.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1391696797774" units="1" version="1.0"/>
+</session>

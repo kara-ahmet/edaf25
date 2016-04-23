@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;dfs_application&apos; to &apos;dfs_applications&apos;&#x0A;- Original project: &apos;lab1&apos;&#x0A;- Original element: &apos;lab1/src/dfs_application&apos;&#x0A;- Renamed element: &apos;lab1/src/dfs_applications&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;dfs_application&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;dfs_application" name="dfs_applications" qualified="false" references="true" stamp="1390468471482" textual="false" version="1.0"/>
+</session>

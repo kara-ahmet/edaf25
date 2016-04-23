@@ -1,0 +1,75 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+
+public class MaxBottleneck {
+	
+	public int maxBottleneck(Graph<String,Integer> g,
+							Graph.Vertex<String,Integer> u,
+							Graph.Vertex<String,Integer> v) {
+		PriorityQueue<PriorityElement> pq =
+			new PriorityQueue<PriorityElement>(100, new PrioComparator());
+		Map<Graph.Vertex<String,Integer>, Integer> vertexMap =
+			new HashMap<Graph.Vertex<String,Integer>, Integer>();
+		Set<Graph.Vertex<String,Integer>> ready = 
+			new HashSet<Graph.Vertex<String,Integer>>();
+		
+		vertexMap.put(u,Integer.MAX_VALUE);
+		pq.offer(new PriorityElement(u,Integer.MAX_VALUE));
+		while (!pq.isEmpty()) {
+			PriorityElement pe = pq.poll();
+			Graph.Vertex<String,Integer> actVertex = pe.v;
+			if (actVertex == v) {
+				return pe.largestBN;
+			}
+			if (!ready.contains(actVertex)) {
+				ready.add(actVertex);
+				int actBN = pe.largestBN;
+				System.out.println("Ready: " + actVertex + ", " + actBN);
+				for (Graph.Edge<String,Integer> e : actVertex) {
+					Graph.Vertex<String,Integer> w =
+						e.destination();
+					int bn;
+					/*if (actBN == 0) {
+						bn = e.getValue();
+					} else {*/
+						bn = Math.min(actBN, e.getValue());
+					/*}*/
+					//System.out.println(bn);
+					if (!vertexMap.containsKey(w) || 
+							new Integer(bn).compareTo(vertexMap.get(w)) > 0) {
+						vertexMap.put(w,bn);
+						pq.offer(new PriorityElement(w,bn));
+					}
+				}
+			}
+		}
+		return -1;
+	}
+	
+	private class PriorityElement {
+		Graph.Vertex<String,Integer> v;
+		int largestBN;
+		
+		private PriorityElement(Graph.Vertex<String,Integer> v,
+				int largestBN) {
+			this.v = v;
+			this.largestBN = largestBN;
+		}
+	}
+	
+	private class PrioComparator 
+					implements Comparator<PriorityElement> {
+		public int compare(PriorityElement p1, PriorityElement p2) {
+			return p2.largestBN - p1.largestBN;
+		}
+	}
+
+}

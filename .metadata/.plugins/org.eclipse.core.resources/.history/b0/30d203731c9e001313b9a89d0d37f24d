@@ -1,0 +1,86 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import digraph.DiGraph;
+
+public class TestMaxBottleneck {
+	MaxBottleneck mb;
+
+	@Before
+	public void setUp() throws Exception {
+		mb = new MaxBottleneck();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testMaxBottleneck() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> v1 = g.addVertex("v1");
+		Graph.Vertex<String,Integer> v2 = g.addVertex("v2");
+		g.addEdge(5,v1,v2);
+		//System.out.println(mb.maxBottleneck(g, v1, v2));
+		assertTrue(mb.maxBottleneck(g, v1, v2) == 5);
+	}
+	
+	@Test
+	public void testMaxBottleneck2() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> v1 = g.addVertex("v1");
+		Graph.Vertex<String,Integer> v2 = g.addVertex("v2");
+		Graph.Vertex<String,Integer> v3 = g.addVertex("v3");
+		g.addEdge(10,v1,v2);
+		g.addEdge(5,v1,v3);
+		g.addEdge(7,v2,v3);
+		//System.out.println(mb.maxBottleneck(g, v1, v2));
+		assertTrue(mb.maxBottleneck(g, v1, v2) == 10);
+		assertTrue(mb.maxBottleneck(g, v1, v3) == 7);
+		
+	}
+	
+	@Test
+	public void testMaxBottleneck3() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> m = g.addVertex("m");
+		Graph.Vertex<String,Integer> f = g.addVertex("f");
+		Graph.Vertex<String,Integer> t = g.addVertex("t");
+		Graph.Vertex<String,Integer> c = g.addVertex("c");
+		Graph.Vertex<String,Integer> b = g.addVertex("b");
+		Graph.Vertex<String,Integer> h = g.addVertex("h");
+		Graph.Vertex<String,Integer> d = g.addVertex("d");
+		g.addEdge(11,m,f);
+		g.addEdge(11,f,m);
+		g.addEdge(8,m,t);
+		g.addEdge(8,t,m);
+		g.addEdge(40,m,c);
+		g.addEdge(40,c,m);
+		g.addEdge(3,f,t);
+		g.addEdge(3,t,f);
+		g.addEdge(29,t,c);
+		g.addEdge(29,c,t);
+		g.addEdge(31,t,h);
+		g.addEdge(31,h,t);
+		g.addEdge(46,f,b);
+		g.addEdge(46,b,f);
+		g.addEdge(40,b,h);
+		g.addEdge(40,h,b);
+		g.addEdge(15,b,d);
+		g.addEdge(15,d,b);
+		g.addEdge(53,d,h);
+		g.addEdge(53,h,d);
+		g.addEdge(17,c,h);
+		g.addEdge(17,h,c);
+		//System.out.println(mb.maxBottleneck(g, v1, v2));
+		assertTrue(mb.maxBottleneck(g, m, f) == 29);
+		
+	}
+
+}

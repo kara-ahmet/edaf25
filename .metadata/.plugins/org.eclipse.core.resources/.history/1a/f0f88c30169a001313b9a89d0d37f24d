@@ -1,0 +1,11 @@
+package dfsvariants;
+import graph.*;
+
+
+public class DFS {
+	
+	public <V,E> void DFS(Graph.Vertex<V,E> v) {
+		
+	}
+
+}

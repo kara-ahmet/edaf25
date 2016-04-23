@@ -1,0 +1,42 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+
+public class MaxBottleneck {
+	
+	public int maxBottleneck(Graph<String,Integer> g,
+							Graph.Vertex<String,Integer> u,
+							Graph.Vertex<String,Integer> v) {
+		PriorityQueue<PriorityElement> pq =
+			new PriorityQueue<PriorityElement>(100, new PrioComparator());
+		Map<Graph.Vertex<String,Integer>, Integer> vertexMap =
+			new HashMap<Graph.Vertex<String,Integer>, Integer>();
+		Set<Graph.Vertex<String.Integer>> ready = 
+			new HashSet<Graph.Vertex<String.Integer>>();
+		return 0;
+	}
+	
+	private class PriorityElement {
+		Graph.Vertex<String,Integer> v;
+		int largestBN;
+		
+		private PriorityElement(Graph.Vertex<String,Integer> v,
+				int largestBN) {
+			this.v = v;
+			this.largestBN = largestBN;
+		}
+	}
+	
+	private class PrioComparator 
+					implements Comparator<PriorityElement> {
+		public int compare(PriorityElement p1, PriorityElement p2) {
+			return p2.largestBN - p1.largestBN;
+		}
+	}
+
+}

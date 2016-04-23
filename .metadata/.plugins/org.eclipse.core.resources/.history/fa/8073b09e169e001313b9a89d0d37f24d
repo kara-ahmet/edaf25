@@ -1,0 +1,33 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Assert.*;
+
+import digraph.DiGraph;
+
+public class TestMaxBottleneck {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testMaxBottleneck() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> v1 = g.addVertex("v1");
+		Graph.Vertex<String,Integer> v2 = g.addVertex("v2");
+		g.addEdge(5,v1,v2);
+		
+			
+		
+	}
+
+}

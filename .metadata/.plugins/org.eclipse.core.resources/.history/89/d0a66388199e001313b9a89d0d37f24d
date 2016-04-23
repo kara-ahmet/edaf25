@@ -1,0 +1,48 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import digraph.DiGraph;
+
+public class TestMaxBottleneck {
+	MaxBottleneck mb;
+
+	@Before
+	public void setUp() throws Exception {
+		mb = new MaxBottleneck();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testMaxBottleneck() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> v1 = g.addVertex("v1");
+		Graph.Vertex<String,Integer> v2 = g.addVertex("v2");
+		g.addEdge(5,v1,v2);
+		//System.out.println(mb.maxBottleneck(g, v1, v2));
+		assertTrue(mb.maxBottleneck(g, v1, v2) == 5);
+	}
+	
+	@Test
+	public void testMaxBottleneck2() {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> v1 = g.addVertex("v1");
+		Graph.Vertex<String,Integer> v2 = g.addVertex("v2");
+		Graph.Vertex<String,Integer> v3 = g.addVertex("v3");
+		g.addEdge(10,v1,v2);
+		g.addEdge(5,v1,v3);
+		g.addEdge(7,v2,v3);
+		//System.out.println(mb.maxBottleneck(g, v1, v2));
+		assertTrue(mb.maxBottleneck(g, v1, v2) == 10);
+		
+	}
+
+}

@@ -1,0 +1,13 @@
+package maxbottleneck;
+
+import graph.Graph;
+
+public class MaxBottleneck {
+	
+	public int maxBottleneck(Graph<String,Integer> g,
+							Graph<V,E>.Vertex<String,Integer> u,
+							Graph<V,E>.Vertex<String,Integer> v) {
+		return 0;
+	}
+
+}

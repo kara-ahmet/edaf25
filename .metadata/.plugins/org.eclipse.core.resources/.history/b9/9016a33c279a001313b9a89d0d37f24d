@@ -1,0 +1,94 @@
+package dfsvariants;
+import graph.Graph;
+import digraph.DiGraph;
+import java.util.Stack;
+
+
+public class DFS<V,E> {
+	private  int discoveryIndex = 0;
+	private  Graph.Vertex<V,E>[] discoveryOrder = 
+		(Graph.Vertex<V,E>[]) new Graph.Vertex[10];
+	
+	public static <V,E> void IterativeDFS1(Graph.Vertex<V,E> v) {
+		Stack<Graph.Vertex<V,E>> stack = 
+			new Stack<Graph.Vertex<V,E>>();
+		stack.push(v);
+		while (!stack.isEmpty()) {
+			Graph.Vertex<V,E> w = stack.pop();
+			System.out.println("pop: " + w);
+			if (!w.isVisited()) {
+				w.visit();
+				//System.out.println("visiting: " + w);
+				for (Graph.Edge<V,E> e : w) {
+					stack.push(e.destination());
+					//System.out.println("Push: " + e.destination());
+				}
+			}
+		}
+	}
+	
+	public static <V,E> void IterativeDFS2(Graph.Vertex<V,E> v) {
+		int discoveryIndex = 0;
+		Graph.Vertex<V,E>[] discoveryOrder = 
+			(Graph.Vertex<V,E>[]) new Graph.Vertex[10];
+		for (int i = 0; i < discoveryOrder.length; i++) {
+			discoveryOrder[i] = null;
+		}
+		Stack<Graph.Vertex<V,E>> stack = 
+			new Stack<Graph.Vertex<V,E>>();
+		stack.push(v);
+		v.visit();
+		while (!stack.isEmpty()) {
+			Graph.Vertex<V,E> w = stack.pop();
+			System.out.println("pop: " + w);
+			discoveryOrder[discoveryIndex++] = v;
+			for (Graph.Edge<V,E> e : w) {
+				if (!e.destination().isVisited()) {
+					e.destination().visit();
+					stack.push(e.destination());
+					//System.out.println("Push: " + e.destination());
+				}
+			}
+		}
+		System.out.println(discoveryOrder);
+	}
+	
+	public static <V,E> void IterativeDFS3(Graph.Vertex<V,E> v) {
+		Stack<Graph.Vertex<V,E>> stack = 
+			new Stack<Graph.Vertex<V,E>>();
+		stack.push(v);
+		
+		while (!stack.isEmpty()) {
+			Graph.Vertex<V,E> w = stack.pop();
+			System.out.println("pop: " + w);
+			if (!w.isVisited()) {
+				w.visit();
+
+
+				for (Graph.Edge<V,E> e : w) {
+					if (!e.destination().isVisited()){
+						stack.push(e.destination());
+					//System.out.println("Push: " + e.destination());
+					}
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		Graph<String,Integer> g = new DiGraph<String,Integer>();
+		Graph.Vertex<String,Integer> a = g.addVertex("a");
+		Graph.Vertex<String,Integer> b = g.addVertex("b");
+		Graph.Vertex<String,Integer> c = g.addVertex("c");
+		Graph.Vertex<String,Integer> d = g.addVertex("d");
+		g.addEdge(1,a,b);
+		g.addEdge(2,a,c);
+		g.addEdge(3,b,d);
+		g.addEdge(4,c,d);
+		g.addEdge(5,c,b);
+		g.unvisit();
+		IterativeDFS2(a);
+		
+	}
+
+}
